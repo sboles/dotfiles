@@ -48,6 +48,7 @@ alias gsl="git shortlog -sn"
 alias gw="git whatchanged"
 alias gsr="git svn rebase"
 alias gsp="git svn dcommit"
+alias gsvnup='git add . -A; gca -m "update from svn"'
 
 # Useful report of what has been committed locally but not yet pushed to another
 # branch.  Defaults to the remote origin/master.  The u is supposed to stand for
