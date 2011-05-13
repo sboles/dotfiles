@@ -101,16 +101,18 @@ export EDITOR="vi"
 ## History
 ############################################################
 
+export HISTSIZE=100000                   # big big history
 # When you exit a shell, the history from that session is appended to
 # ~/.bash_history.  Without this, you might very well lose the history of entire
 # sessions (weird that this is not enabled by default).
-shopt -s histappend
+shopt -s histappend                      # append to history, don't overwrite it
 
 export HISTIGNORE="&:pwd:ls:ll:lal:[bf]g:exit:rm*:sudo rm*"
 # remove duplicates from the history (when a new item is added)
-export HISTCONTROL=erasedups
-# increase the default size from only 1,000 items
-export HISTSIZE=10000
+export HISTCONTROL=ignoredups            # ignore duplicate entries
+
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 ############################################################
 ## Aliases

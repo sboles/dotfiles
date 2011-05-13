@@ -161,3 +161,5 @@ alias b64="openssl enc -base64"
 alias flushdns='dscacheutil -flushcache'
 
 ############################################################
+alias startpg='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias stoppg='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
