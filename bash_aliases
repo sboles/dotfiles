@@ -164,3 +164,5 @@ alias flushdns='dscacheutil -flushcache'
 ############################################################
 alias startpg='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 alias stoppg='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+alias startmongo='mongod run --config /usr/local/Cellar/mongodb/1.8.1-x86_64/mongod.conf'
+
