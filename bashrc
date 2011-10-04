@@ -18,6 +18,10 @@ if [ -d /usr/local/sbin ] ; then
   PATH="${PATH}:/usr/local/sbin"
 fi
 
+if [ -d ~/.bin ] ; then
+  PATH="~/.bin:${PATH}"
+fi
+
 PATH=.:${PATH}
 
 ############################################################
