@@ -22,6 +22,10 @@ if [ -d ~/.bin ] ; then
   PATH="~/.bin:${PATH}"
 fi
 
+if [ -d ~/.dotbin ] ; then
+  PATH="~/.dotbin:${PATH}"
+fi
+
 PATH=.:${PATH}
 
 ############################################################
