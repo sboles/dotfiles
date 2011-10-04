@@ -79,7 +79,7 @@ else
   }
 fi
 
-if [ "$OS" != "Windows_NT" && `which rvm-prompt` ]; then
+if [ "$OS" != "Windows_NT" ] && [ `which rvm-prompt` ]; then
   function rvm_prompt {
     echo "($(rvm-prompt v g))"
   }
