@@ -79,7 +79,7 @@ else
   }
 fi
 
-if [ `which rvm-prompt` ]; then
+if [ "$OS" != "Windows_NT" && `which rvm-prompt` ]; then
   function rvm_prompt {
     echo "($(rvm-prompt v g))"
   }
@@ -88,6 +88,7 @@ else
     echo ""
   }
 fi
+
 
 # Do not set PS1 for dumb terminals
 if [ "$TERM" != 'dumb' ] && [ -n "$BASH" ]; then
