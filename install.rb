@@ -8,7 +8,7 @@ Dir['*'].each do |file|
   target = File.join(home, ".#{file}")
   next if target =~ /install/
   next if File.exists?(target)
-  command = "ln -s #{File.expand_path file} #{target}"
+  command = "ln -s '#{File.expand_path file}' '#{target}'"
   puts command
   `#{command}`
 end
