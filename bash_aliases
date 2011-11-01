@@ -102,12 +102,18 @@ alias whotunes='lsof -r 2 -n -P -F n -c iTunes -a -i TCP@`hostname`:3689'
 ############################################################
 ## Bundler
 ############################################################
+function ignore_vendor_ruby {
+  grep -q 'vendor/ruby' .gitignore > /dev/null
+  if [[ $? -ne 0 ]]; then
+    echo -e "\nvendor/ruby" >> .gitignore
+  fi
+}
 
 alias b="bundle"
 alias bu="b update"
 alias be="b exec"
 alias bi="b install --path vendor"
-alias binit="bi && b package && echo 'vendor/ruby' >> .gitignore"
+alias binit="bi && b package && ignore_vendor_ruby"
 
 ############################################################
 ## Ruby
