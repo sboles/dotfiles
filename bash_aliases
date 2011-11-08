@@ -166,3 +166,8 @@ alias startpg='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/serv
 alias stoppg='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 alias startmongo='mongod run --config /usr/local/Cellar/mongodb/1.8.1-x86_64/mongod.conf'
 
+############################################################
+## Maven
+############################################################
+alias mci='mvn clean install'
+alias mc='mvn clean'
