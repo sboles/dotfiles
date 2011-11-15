@@ -1,11 +1,40 @@
 #!/bin/sh
-breakchars="(){}[],^%$#@\"\";:''|\\"
-CLOJURE_DIR=/usr/local/Cellar/clojure/1.2.0
-CLOJURE_JAR="$CLOJURE_DIR"/clojure.jar
-if [ $# -eq 0 ]; then 
-     exec rlwrap --remember -c -b "$breakchars" \
-        -f "$HOME"/.clj_completions \
-         java -cp "$CLOJURE_JAR" clojure.main
-else
-     exec java -cp "$CLOJURE_JAR" clojure.main $1 -- "$@"
+
+# clj - Clojure launcher script
+
+BREAK_CHARS="\(\){}[],^%$#@\"\";:''|\\"
+
+cljjar='/usr/local/Cellar/clojure/1.3.0/clojure-1.3.0.jar'
+cljclass='clojure.main'
+cljcompletions='.clj_completions'
+
+dir=$0
+while [ -h "$dir" ]; do
+  ls=`ls -ld "$dir"`
+  link=`expr "$ls" : '.*-> \(.*\)$'`
+
+  if expr "$link" : '/.*' > /dev/null; then
+    dir="$link"
+  else
+    dir=`dirname "$dir"`"/$link"
+  fi
+done
+
+dir=`dirname $dir`
+dir=`cd "$dir" > /dev/null && pwd`
+cp="${PWD}:${cljjar}"
+cljcompletions="$HOME/$cljcompletions"
+
+# Add extra jars as specified by `.clojure` file
+# Borrowed from <http://github.com/mreid/clojure-framework>
+if [ -f .clojure ]; then
+  cp=$cp:`cat .clojure`
 fi
+
+if [ $# -eq 0 ]; then
+  echo "rlwrap --remember -c -b $BREAK_CHARS -f $cljcompletions java -cp $cp $cljclass"
+  rlwrap --remember -c -b $BREAK_CHARS -f $cljcompletions java -cp $cp $cljclass
+else
+  exec java -classpath $cp $cljclass $*
+fi
+
