@@ -8,6 +8,10 @@ Dir['*'].each do |file|
   target = File.join(home, ".#{file}")
   next if target =~ /install/
   next if target =~ /vim/
+  next if target =~ /vimrc/
+  next if target =~ /dotbin/
+  next if target =~ /clj/
+  next if target =~ /terminal/
   next if target =~ /README/
   next if File.exists?(target)
   command = "ln -s '#{File.expand_path file}' '#{target}'"
